@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{171DBE85-AEF3-4B3D-AD46-84BB4AC21F51}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\FMOD\inc;$(SolutionDir)Lib\ImGUI;$(SolutionDir)GAM200;$(SolutionDir)Lib\glew\inc;$(SolutionDir)Lib\glm;$(SolutionDir)Lib\SOIL\inc;$(SolutionDir)Lib\freetype\inc</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\FMOD\inc;$(SolutionDir)Lib\ImGUI;$(SolutionDir)GAM200;$(SolutionDir)Lib\glew\inc;$(SolutionDir)Lib\glm;$(SolutionDir)Lib\SOIL\inc;$(SolutionDir)Lib\freetype\inc</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\ImGUI;$(SolutionDir)Lib\FMOD\inc;$(SolutionDir)GAM200;$(SolutionDir)Lib\glew\inc;$(SolutionDir)Lib\glm;$(SolutionDir)Lib\SOIL\inc;$(SolutionDir)Lib\freetype\inc</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LEVEL_EDITOR;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\FMOD\lib;$(SolutionDir)Lib\glew\lib\x64;$(SolutionDir)Lib\SOIL\lib;$(SolutionDir)Lib\freetype\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>pdh.lib;fmodL64_vc.lib;fmod64_vc.lib;Shlwapi.lib;freetype.lib;SOIL.lib;glew32s.lib;OpenGL32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib;msvcrt.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\ImGUI;$(SolutionDir)Lib\FMOD\inc;$(SolutionDir)GAM200;$(SolutionDir)Lib\glew\inc;$(SolutionDir)Lib\glm;$(SolutionDir)Lib\SOIL\inc;$(SolutionDir)Lib\freetype\inc</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LEVEL_EDITOR;_UNICODE;UNICODE;NDEBUG;;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\FMOD\lib;$(SolutionDir)Lib\glew\lib\x64;$(SolutionDir)Lib\SOIL\lib;$(SolutionDir)Lib\freetype\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>pdh.lib;fmodL64_vc.lib;fmod64_vc.lib;Shlwapi.lib;freetype.lib;SOIL.lib;glew32s.lib;OpenGL32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib;</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\GAM200\AIBoss1Attack.cpp" />
+    <ClCompile Include="..\GAM200\AIBoss1Charge.cpp" />
+    <ClCompile Include="..\GAM200\AIBoss1Damaged.cpp" />
+    <ClCompile Include="..\GAM200\AIBoss1Idle.cpp" />
+    <ClCompile Include="..\GAM200\AIBoss1VField.cpp" />
+    <ClCompile Include="..\GAM200\AIBoss1Vulnerable.cpp" />
+    <ClCompile Include="..\GAM200\AIChase.cpp" />
+    <ClCompile Include="..\GAM200\AIExplode.cpp" />
+    <ClCompile Include="..\GAM200\AIRoaming.cpp" />
+    <ClCompile Include="..\GAM200\Blast.cpp" />
+    <ClCompile Include="..\gam200\Component.cpp" />
+    <ClCompile Include="..\gam200\ComponentAnimation.cpp" />
+    <ClCompile Include="..\GAM200\ComponentAudio.cpp" />
+    <ClCompile Include="..\GAM200\ComponentCamera.cpp" />
+    <ClCompile Include="..\gam200\ComponentCollision.cpp" />
+    <ClCompile Include="..\GAM200\ComponentEmitter.cpp" />
+    <ClCompile Include="..\gam200\ComponentPhysics.cpp" />
+    <ClCompile Include="..\gam200\ComponentRenderer.cpp" />
+    <ClCompile Include="..\gam200\ComponentScript.cpp" />
+    <ClCompile Include="..\gam200\ComponentText.cpp" />
+    <ClCompile Include="..\gam200\ComponentTransform.cpp" />
+    <ClCompile Include="..\GAM200\ComponentUI.cpp" />
+    <ClCompile Include="..\GAM200\CSVReader.cpp" />
+    <ClCompile Include="..\gam200\DebugDiagnostic.cpp" />
+    <ClCompile Include="..\gam200\DebugToStream.cpp" />
+    <ClCompile Include="..\GAM200\ForceManager.cpp" />
+    <ClCompile Include="..\GAM200\FwAudio.cpp" />
+    <ClCompile Include="..\gam200\FwEngine.cpp" />
+    <ClCompile Include="..\GAM200\FwGraphics.cpp" />
+    <ClCompile Include="..\GAM200\FWMath.cpp" />
+    <ClCompile Include="..\gam200\GameObject.cpp" />
+    <ClCompile Include="..\gam200\GameObjectFactory.cpp" />
+    <ClCompile Include="..\gam200\GameObjectPool.cpp" />
+    <ClCompile Include="..\gam200\IComponent.cpp" />
+    <ClCompile Include="..\gam200\IScript.cpp" />
+    <ClCompile Include="..\gam200\ISystem.cpp" />
+    <ClCompile Include="..\gam200\Map.cpp" />
+    <ClCompile Include="..\gam200\MapFactory.cpp" />
+    <ClCompile Include="..\gam200\Math_Collision.cpp" />
+    <ClCompile Include="..\gam200\Math_CollisionAABB.cpp" />
+    <ClCompile Include="..\GAM200\Math_CollisionSAT.cpp" />
+    <ClCompile Include="..\GAM200\Matrix3x3.cpp" />
+    <ClCompile Include="..\GAM200\Particle.cpp" />
+    <ClCompile Include="..\GAM200\Reaction.cpp" />
+    <ClCompile Include="..\GAM200\ResourceManager.cpp" />
+    <ClCompile Include="..\GAM200\ScriptAI.cpp" />
+    <ClCompile Include="..\GAM200\ScriptChargeObject.h.cpp" />
+    <ClCompile Include="..\GAM200\ScriptDebug.cpp" />
+    <ClCompile Include="..\GAM200\ScriptDialogue.cpp" />
+    <ClCompile Include="..\GAM200\ScriptEndZone.cpp" />
+    <ClCompile Include="..\GAM200\ScriptForcecField.cpp" />
+    <ClCompile Include="..\GAM200\ScriptKillZone.cpp" />
+    <ClCompile Include="..\GAM200\ScriptMagneticLight.cpp" />
+    <ClCompile Include="..\GAM200\ScriptMainMenu.cpp" />
+    <ClCompile Include="..\GAM200\ScriptMenuUIButton.cpp" />
+    <ClCompile Include="..\GAM200\ScriptMetal.cpp" />
+    <ClCompile Include="..\GAM200\ScriptMovingPlatform.cpp" />
+    <ClCompile Include="..\GAM200\ScriptNonMetal.cpp" />
+    <ClCompile Include="..\gam200\ScriptPlayer.cpp" />
+    <ClCompile Include="..\GAM200\ScriptPlayerUI.cpp" />
+    <ClCompile Include="..\GAM200\ScriptSpawn.cpp" />
+    <ClCompile Include="..\GAM200\ScriptSpikeBox.cpp" />
+    <ClCompile Include="..\GAM200\ScriptStart.cpp" />
+    <ClCompile Include="..\GAM200\ScriptSwitch.cpp" />
+    <ClCompile Include="..\GAM200\ScriptTemperature.cpp" />
+    <ClCompile Include="..\gam200\ScriptTestObjectOne.cpp" />
+    <ClCompile Include="..\GAM200\ScriptTilePlatform.cpp" />
+    <ClCompile Include="..\GAM200\ScriptTrigger.cpp" />
+    <ClCompile Include="..\GAM200\ScriptUIText.cpp" />
+    <ClCompile Include="..\GAM200\ScriptWinZone.cpp" />
+    <ClCompile Include="..\GAM200\StringConverter.cpp" />
+    <ClCompile Include="..\GAM200\SystemAudio.cpp" />
+    <ClCompile Include="..\gam200\SystemCustomSerialization.cpp" />
+    <ClCompile Include="..\gam200\SystemGraphics.cpp" />
+    <ClCompile Include="..\gam200\SystemInput.cpp" />
+    <ClCompile Include="..\gam200\SystemListener.cpp" />
+    <ClCompile Include="..\gam200\SystemManager.cpp" />
+    <ClCompile Include="..\gam200\SystemObservable.cpp" />
+    <ClCompile Include="..\gam200\SystemPhysics.cpp" />
+    <ClCompile Include="..\gam200\SystemScript.cpp" />
+    <ClCompile Include="..\gam200\SystemSerialization.cpp" />
+    <ClCompile Include="..\gam200\SystemSerializationBase.cpp" />
+    <ClCompile Include="..\GAM200\Vector.cpp" />
+    <ClCompile Include="..\gam200\WindowSystem.cpp" />
+    <ClCompile Include="..\Lib\ImGUI\imgui.cpp" />
+    <ClCompile Include="..\Lib\ImGUI\imgui_demo.cpp" />
+    <ClCompile Include="..\Lib\ImGUI\imgui_draw.cpp" />
+    <ClCompile Include="..\Lib\ImGUI\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\Lib\ImGUI\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\Lib\ImGUI\imgui_stdlib.cpp" />
+    <ClCompile Include="..\Lib\ImGUI\imgui_widgets.cpp" />
+    <ClCompile Include="imguiInput.cpp" />
+    <ClCompile Include="imguiList.cpp" />
+    <ClCompile Include="imguiListComps.cpp" />
+    <ClCompile Include="imguiMap.cpp" />
+    <ClCompile Include="imguiMenuBar.cpp" />
+    <ClCompile Include="imguiMgr.cpp" />
+    <ClCompile Include="imguiPerformance.cpp" />
+    <ClCompile Include="imguiPrefab.cpp" />
+    <ClCompile Include="imguiSave.cpp" />
+    <ClCompile Include="imguiUndo.cpp" />
+    <ClCompile Include="LEEngine.cpp" />
+    <ClCompile Include="LESysMgr.cpp" />
+    <ClCompile Include="main.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\GAM200;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)..\GAM200;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="WindowsDialogBox.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\GAM200\AIBoss1Attack.h" />
+    <ClInclude Include="..\GAM200\AIBoss1Charge.h" />
+    <ClInclude Include="..\GAM200\AIBoss1Damaged.h" />
+    <ClInclude Include="..\GAM200\AIBoss1Idle.h" />
+    <ClInclude Include="..\GAM200\AIBoss1VField.h" />
+    <ClInclude Include="..\GAM200\AIBoss1Vulnerable.h" />
+    <ClInclude Include="..\GAM200\AIChase.h" />
+    <ClInclude Include="..\GAM200\AIExplode.h" />
+    <ClInclude Include="..\GAM200\AIRoaming.h" />
+    <ClInclude Include="..\GAM200\Blast.h" />
+    <ClInclude Include="..\gam200\Component.h" />
+    <ClInclude Include="..\gam200\ComponentAnimation.h" />
+    <ClInclude Include="..\GAM200\ComponentAudio.h" />
+    <ClInclude Include="..\GAM200\ComponentCamera.h" />
+    <ClInclude Include="..\gam200\ComponentCollision.h" />
+    <ClInclude Include="..\GAM200\ComponentEmitter.h" />
+    <ClInclude Include="..\gam200\ComponentPhysics.h" />
+    <ClInclude Include="..\gam200\ComponentRenderer.h" />
+    <ClInclude Include="..\gam200\ComponentScript.h" />
+    <ClInclude Include="..\gam200\ComponentText.h" />
+    <ClInclude Include="..\gam200\ComponentTransform.h" />
+    <ClInclude Include="..\GAM200\ComponentUI.h" />
+    <ClInclude Include="..\GAM200\CSVReader.h" />
+    <ClInclude Include="..\gam200\DebugDiagnostic.h" />
+    <ClInclude Include="..\gam200\DebugToStream.h" />
+    <ClInclude Include="..\GAM200\ForceManager.h" />
+    <ClInclude Include="..\gam200\framework.h" />
+    <ClInclude Include="..\GAM200\FwAudio.h" />
+    <ClInclude Include="..\gam200\FwEngine.h" />
+    <ClInclude Include="..\GAM200\FwGraphics.h" />
+    <ClInclude Include="..\GAM200\FWMath.h" />
+    <ClInclude Include="..\gam200\GameObject.h" />
+    <ClInclude Include="..\gam200\GameObjectFactory.h" />
+    <ClInclude Include="..\gam200\GameObjectPool.h" />
+    <ClInclude Include="..\gam200\GraphicENUM.h" />
+    <ClInclude Include="..\gam200\IComponent.h" />
+    <ClInclude Include="..\gam200\IScript.h" />
+    <ClInclude Include="..\gam200\ISystem.h" />
+    <ClInclude Include="..\gam200\Map.h" />
+    <ClInclude Include="..\gam200\MapFactory.h" />
+    <ClInclude Include="..\gam200\Math_Collision.h" />
+    <ClInclude Include="..\gam200\Math_CollisionAABB.h" />
+    <ClInclude Include="..\GAM200\Math_CollisionSAT.h" />
+    <ClInclude Include="..\GAM200\Matrix3x3.h" />
+    <ClInclude Include="..\GAM200\Particle.h" />
+    <ClInclude Include="..\GAM200\Reaction.h" />
+    <ClInclude Include="..\gam200\Resource.h" />
+    <ClInclude Include="..\GAM200\ResourceManager.h" />
+    <ClInclude Include="..\GAM200\ScriptAI.h" />
+    <ClInclude Include="..\GAM200\ScriptChargeObject.h" />
+    <ClInclude Include="..\GAM200\ScriptDebug.h" />
+    <ClInclude Include="..\GAM200\ScriptDialogue.h" />
+    <ClInclude Include="..\GAM200\ScriptEndZone.h" />
+    <ClInclude Include="..\GAM200\ScriptFactory.h" />
+    <ClInclude Include="..\GAM200\ScriptForceField.h" />
+    <ClInclude Include="..\GAM200\ScriptKillZone.h" />
+    <ClInclude Include="..\GAM200\ScriptMagneticLight.h" />
+    <ClInclude Include="..\GAM200\ScriptMainMenu.h" />
+    <ClInclude Include="..\GAM200\ScriptMenuUIButton.h" />
+    <ClInclude Include="..\GAM200\ScriptMetal.h" />
+    <ClInclude Include="..\GAM200\ScriptMovingPlatform.h" />
+    <ClInclude Include="..\GAM200\ScriptNonMetal.h" />
+    <ClInclude Include="..\gam200\ScriptPlayer.h" />
+    <ClInclude Include="..\GAM200\ScriptPlayerUI.h" />
+    <ClInclude Include="..\GAM200\ScriptSpawn.h" />
+    <ClInclude Include="..\GAM200\ScriptSpikeBox.h" />
+    <ClInclude Include="..\GAM200\ScriptStart.h" />
+    <ClInclude Include="..\GAM200\ScriptSwitch.h" />
+    <ClInclude Include="..\GAM200\ScriptTemperature.h" />
+    <ClInclude Include="..\gam200\ScriptTestObjectOne.h" />
+    <ClInclude Include="..\GAM200\ScriptTilePlatform.h" />
+    <ClInclude Include="..\GAM200\ScriptTrigger.h" />
+    <ClInclude Include="..\GAM200\ScriptUIText.h" />
+    <ClInclude Include="..\GAM200\ScriptWinZone.h" />
+    <ClInclude Include="..\gam200\ShaderSystem.h" />
+    <ClInclude Include="..\GAM200\StringConverter.h" />
+    <ClInclude Include="..\GAM200\SystemAudio.h" />
+    <ClInclude Include="..\gam200\SystemCustomMessages.h" />
+    <ClInclude Include="..\gam200\SystemCustomSerialization.h" />
+    <ClInclude Include="..\gam200\SystemGraphics.h" />
+    <ClInclude Include="..\gam200\SystemIMessage.h" />
+    <ClInclude Include="..\gam200\SystemInput.h" />
+    <ClInclude Include="..\gam200\SystemListener.h" />
+    <ClInclude Include="..\gam200\SystemManager.h" />
+    <ClInclude Include="..\gam200\SystemObservable.h" />
+    <ClInclude Include="..\gam200\SystemPhysics.h" />
+    <ClInclude Include="..\gam200\SystemScript.h" />
+    <ClInclude Include="..\gam200\SystemSerialization.h" />
+    <ClInclude Include="..\gam200\SystemSerializationBase.h" />
+    <ClInclude Include="..\gam200\targetver.h" />
+    <ClInclude Include="..\GAM200\Vector.h" />
+    <ClInclude Include="..\gam200\WindowSystem.h" />
+    <ClInclude Include="..\Lib\ImGUI\imconfig.h" />
+    <ClInclude Include="..\Lib\ImGUI\imgui.h" />
+    <ClInclude Include="..\Lib\ImGUI\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\Lib\ImGUI\imgui_impl_win32.h" />
+    <ClInclude Include="..\Lib\ImGUI\imgui_internal.h" />
+    <ClInclude Include="..\Lib\ImGUI\imgui_stdlib.h" />
+    <ClInclude Include="..\Lib\ImGUI\imstb_rectpack.h" />
+    <ClInclude Include="..\Lib\ImGUI\imstb_textedit.h" />
+    <ClInclude Include="..\Lib\ImGUI\imstb_truetype.h" />
+    <ClInclude Include="FWQuery.h" />
+    <ClInclude Include="imguiMgr.h" />
+    <ClInclude Include="LEEngine.h" />
+    <ClInclude Include="LESysMgr.h" />
+    <ClInclude Include="WindowsDialogBox.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\gam200\GAM200.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
