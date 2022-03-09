@@ -1,3 +1,17 @@
+/******************************************************************************/
+/*!
+\file		SystemPhysics.cpp
+\project	Aris
+\author 	Primary: Wang YiDi
+\par    	email: w.yidi\@digipen.edu
+\date   	December 3, 2019
+\brief
+
+Copyright (C) 2019 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents without the
+prior written consent of DigiPen Institute of Technology is prohibited.
+ */
+ /******************************************************************************/
 #include "WindowSystem.h"
 #include <iostream>
 #include "SystemPhysics.h"
@@ -33,11 +47,79 @@ namespace FwEngine
 		ComponentPhysics* phys1, ComponentTransform* trans1, ComponentCollision* coll1,
 		ComponentPhysics* phys2, ComponentTransform* trans2, ComponentCollision* coll2)
 	{
+		// Creating an object of CSVReader
+		CSVReader reader("Resources/Configuration/CollisionConfig.csv");
 
-		if (trans1->_tag == "metal" && trans2->_tag == "metal")
+		// Get the data from CSV File
+		std::vector<std::vector<std::string> > dataList = reader.getData();
+
+		for (size_t i = 0; i < dataList.size(); i++)
 		{
-			StackingResponse(phys1, trans1, coll1, phys2, trans2, coll2);
+			for (size_t j = 0; j < dataList.size(); j++)
+			{
+				if (trans1->_tag == dataList[i][0] && trans2->_tag == dataList[0][j])
+				{
+					int check = dataList[i][j].c_str()[0] - '0';
+					switch (check)
+					{
+					case 1:
+						StackingResponse_NonElastic(phys1, trans1, coll1, phys2, trans2, coll2);
+						break;
+					case 2:
+						StackingResponse_Elastic(phys1, trans1, coll1, phys2, trans2, coll2);
+						break;
+					case 3:
+						NoPhysicsUnpenetrableObject(phys1, trans1, coll1, trans2, coll2);
+						break;
+					default:
+						break;
+					}
+				}
+
+			}
 		}
+
+		//if (trans1->_tag == "metal" && trans2->_tag == "metal")
+		//{
+		//	StackingResponse_Elastic(phys1, trans1, coll1, phys2, trans2, coll2);
+		//}
+
+		//if (trans1->_tag == "non metal" && trans2->_tag == "metal")
+		//{
+		//	StackingResponse_Elastic(phys1, trans1, coll1, phys2, trans2, coll2);
+		//}
+
+
+		//if (trans1->_tag == "metal" && trans2->_tag == "non metal")
+		//{
+		//	StackingResponse_Elastic(phys1, trans1, coll1, phys2, trans2, coll2);
+		//}
+
+
+		//if (trans1->_tag == "non metal" && trans2->_tag == "non metal")
+		//{
+		//	StackingResponse_Elastic(phys1, trans1, coll1, phys2, trans2, coll2);
+		//}
+
+		//if (trans1->_tag == "Door" && trans2->_tag == "metal")
+		//{
+		//	NoPhysicsUnpenetrableObject(phys2, trans2, coll2, trans1, coll1);
+		//}
+
+		//if (trans1->_tag == "metal" && trans2->_tag == "Door")
+		//{
+		//	NoPhysicsUnpenetrableObject(phys1, trans1, coll1, trans2, coll2);
+		//}
+
+		//if (trans1->_tag == "Doors" && trans2->_tag == "non metal")
+		//{
+		//	NoPhysicsUnpenetrableObject(phys2, trans2, coll2, trans1, coll1);
+		//}
+
+		//if (trans1->_tag == "non metal" && trans2->_tag == "Doors")
+		//{
+		//	NoPhysicsUnpenetrableObject(phys1, trans1, coll1, trans2, coll2);
+		/*}*/
 		
 	}
 
@@ -45,7 +127,7 @@ namespace FwEngine
 	{}
 
 	SystemPhysics::SystemPhysics(GameObjectPool* gameObjectPool)
-		: ISystem(gameObjectPool), _gravity{ 0, -500, 0 }, _maxVelocity{ 500 },
+		: ISystem(gameObjectPool), _gravity{ 0, -2200, 0 }, _maxVelocity{ 500 },
 		_maxVelocitySq{ _maxVelocity * _maxVelocity }, _penetrationEpsilon{ 0.2f }, _penetrationResolvePercentage{ 0.8f },
 		_map(nullptr), _runCollision{ true }, _listener{ "PhysicsListener" }
 	{
@@ -114,6 +196,8 @@ namespace FwEngine
 			if (colComp1->isEnabled())
 			{
 				colComp1->previousCollisionFlag = colComp1->collisionFlag;
+				colComp1->Prev_Collision_Check_List = colComp1->Collision_Check_List;
+				colComp1->Collision_Check_List.clear();
 				if (phyComp1->isEnabled())
 				{
 
@@ -131,6 +215,7 @@ namespace FwEngine
 
 					if (flag & _map->COLLISION_TOP)
 					{
+						colComp1->Collision_Check_List.insert(std::pair<std::string, char>("tile", 'T'));
 						float newY = _map->SnapToCell(phyComp1->_previousPosition.y,
 							abs(trans1->_scale.y * colComp1->_vertexB.y),
 							_map->COLLISION_TOP);
@@ -139,6 +224,7 @@ namespace FwEngine
 					}
 					if (flag & _map->COLLISION_BOTTOM)
 					{
+						colComp1->Collision_Check_List.insert(std::pair<std::string, char>("tile", 'B'));
 						float newY = _map->SnapToCell(phyComp1->_previousPosition.y,
 							abs(trans1->_scale.y * colComp1->_vertexA.y),
 							_map->COLLISION_BOTTOM);
@@ -147,6 +233,7 @@ namespace FwEngine
 					}
 					if (flag & _map->COLLISION_LEFT)
 					{
+						colComp1->Collision_Check_List.insert(std::pair<std::string, char>("tile", 'L'));
 						float newX = _map->SnapToCell(phyComp1->_previousPosition.x,
 							abs(trans1->_scale.x * colComp1->_vertexA.x),
 							_map->COLLISION_LEFT);
@@ -155,6 +242,7 @@ namespace FwEngine
 					}
 					if (flag & _map->COLLISION_RIGHT)
 					{
+						colComp1->Collision_Check_List.insert(std::pair<std::string, char>("tile", 'R'));
 						float newX = _map->SnapToCell(phyComp1->_previousPosition.x,
 							abs(trans1->_scale.x * colComp1->_vertexB.x),
 							_map->COLLISION_RIGHT);
@@ -182,34 +270,35 @@ namespace FwEngine
 							|| !colComp2->isEnabled())
 							continue;
 
-						bool sat = false;
 						bool aabb = false;
 						//update collider
-						if (trans1->_tag=="blast"||trans2->_tag=="blast")
-						{
-							sat = FwMath::CollisionIntersection_SAT_Intersection(*colComp1, *trans1, *colComp2, *trans2);
-						}
-						else
-						{
-							aabb = DoCollisionCheck(phyComp1,
-								{ colComp1->_vertexA * trans1->_scale + trans1->_currentPosition ,
-								colComp1->_vertexB * trans1->_scale + trans1->_currentPosition },
-								phyComp2,
-								{ colComp2->_vertexA * trans2->_scale + trans2->_currentPosition ,
-								colComp2->_vertexB * trans2->_scale + trans2->_currentPosition },
-								dt,
-								colComp1->_collision_normal);
+						//if (trans1->_tag=="blast"||trans2->_tag=="blast")
+						//{
+						//	sat = FwMath::CollisionIntersection_SAT_Intersection(*colComp1, *trans1, *colComp2, *trans2);
+						//}
+						//else
+						//{
+						aabb = DoCollisionCheck(phyComp1,
+							{ colComp1->_vertexA * trans1->_scale + trans1->_currentPosition ,
+							colComp1->_vertexB * trans1->_scale + trans1->_currentPosition },
+							phyComp2,
+							{ colComp2->_vertexA * trans2->_scale + trans2->_currentPosition ,
+							colComp2->_vertexB * trans2->_scale + trans2->_currentPosition },
+							dt,
+							colComp1->_collision_normal);
 
-							if (aabb)
+						if (aabb)
+						{
+							if ((trans1->_tag.find("Dialogue") == std::string::npos) && (trans2->_tag.find("Dialogue") == std::string::npos))
 							{
 								FwMath::checkCollisionSides(*colComp1,*trans1,*colComp2,*trans2,colComp1->collisionFlag);
-
 							}
 						}
+						/*}*/
 
 						
 
-						if (aabb || sat)
+						if (aabb)
 						//if (FwMath::CollisionIntersection_SAT_DotProduct(*colComp1, *trans1, *colComp2, *trans2))
 						{
 							ComponentScript* scr1 = &_gameObjectPool->GetContainerPtr<ComponentScript>()->at(i);
@@ -224,6 +313,7 @@ namespace FwEngine
 							//pass in obj2's id
 							else
 							{
+								std::cout << "enter" << std::endl;
 								scr1->OnCollisionEnter(j);
 								colComp1->collisionEvent[j] = true;
 							}
@@ -237,6 +327,7 @@ namespace FwEngine
 							//pass in obj1's id
 							else
 							{
+								std::cout << "enter" << std::endl;
 								scr2->OnCollisionEnter(i);
 								colComp2->collisionEvent[i] = true;
 							}
@@ -250,6 +341,7 @@ namespace FwEngine
 							//if previous frame is colliding for obj1
 							if (colComp1->collisionEvent[j])
 							{
+								std::cout << "exit" << std::endl;
 								ComponentScript* scr1 = &_gameObjectPool->GetContainerPtr<ComponentScript>()->at(i);
 
 								colComp1->collisionEvent[j] = false;
@@ -258,6 +350,7 @@ namespace FwEngine
 							//if previous frame is colliding for obj2
 							if (colComp2->collisionEvent[i])
 							{
+								std::cout << "exit" << std::endl;
 								ComponentScript* scr2 = &_gameObjectPool->GetContainerPtr<ComponentScript>()->at(j);
 
 								colComp2->collisionEvent[i] = false;
@@ -284,6 +377,18 @@ namespace FwEngine
 	void SystemPhysics::Free()
 	{
 		//std::cout << "SystemPhysics free" << std::endl;
+		ComponentPhysics* compPhy = &_gameObjectPool->GetContainerPtr<ComponentPhysics>()->at(0);
+		//GameObject* gameObject = _gameObjectPool->GetGameObject(0);
+
+		const size_t compSize = _gameObjectPool->GetContainerPtr<ComponentPhysics>()->size();
+		for (size_t i = 0; i < compSize;
+			++i, ++compPhy)
+		{
+			compPhy->disable();
+			compPhy->Free();
+		}
+
+
 	}
 
 	void SystemPhysics::Destroy()
